@@ -1,11 +1,9 @@
 import styled from 'styled-components'
 
-
-const Form = styled.form`
+const Search = styled.div`
     display:flex;
     justify-content: space-between;
     width: 500px;
 `
-
-export default Form;
+export default Search;
 

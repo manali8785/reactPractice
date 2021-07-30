@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import Select from 'react-select'
-import Form from './search-bar-styled';
-import Button from 'react-bootstrap/Button';
+import Search from './search-bar-styled';
+import { TravelInfo } from '../travel-info/travel-info';
+
 export default function SearchBar(){
 
     const countries=[
-        { value: 'us', label: 'US' },
-        { value: 'uk', label: 'UK' },
-        { value: 'canada', label: 'Canada' }
+        { value: 'US', label: 'US' },
+        { value: 'UK', label: 'UK' },
+        { value: 'Canada', label: 'Canada' }
     ]
-    const [fromLocation , setFromLocation ] = useState({ value: '', label: '' })
-    const [toLocation , setToLocation ] = useState({ value: '', label: '' })
-
-    const handleSubmit = (e) =>{
-        console.log(fromLocation, toLocation)
-        e.preventDefault()
-    }
+    const [fromLocation , setFromLocation ] = useState(countries[0])
+    const [toLocation , setToLocation ] = useState(countries[1])
 
     const customStyles = {
         container: provided => ({
@@ -33,26 +29,25 @@ export default function SearchBar(){
     }
 
     return(
-            <Form onSubmit={handleSubmit}>
-                <label>From
-                    <Select 
-                        options={countries} 
-                        value={fromLocation}
-                        onChange={handleFromChange}
-                        styles={customStyles}
-                    />
-                </label>
-                <label>To
-                    <Select 
-                        options={countries} 
-                        value={toLocation}
-                        onChange={handleToChange}
-                        styles={customStyles}
-                    />
-                </label>
-                <input type="submit" value="Submit" />
-            </Form>
-
+        <div>
+            <Search>
+                <label>From</label>
+                <Select 
+                    options={countries} 
+                    value={fromLocation}
+                    onChange={handleFromChange}
+                    styles={customStyles}
+                />
+                <label>To</label>
+                <Select 
+                    options={countries} 
+                    value={toLocation}
+                    onChange={handleToChange}
+                    styles={customStyles}
+                />     
+            </Search>     
+            <TravelInfo from={fromLocation.value} to={toLocation.value}/> 
+        </div>
     )
 }
 
