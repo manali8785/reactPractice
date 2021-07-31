@@ -31,20 +31,24 @@ export default function SearchBar(){
     return(
         <div>
             <Search>
-                <label>From</label>
-                <Select 
-                    options={countries} 
-                    value={fromLocation}
-                    onChange={handleFromChange}
-                    styles={customStyles}
-                />
-                <label>To</label>
-                <Select 
-                    options={countries} 
-                    value={toLocation}
-                    onChange={handleToChange}
-                    styles={customStyles}
-                />     
+                <span>
+                    <label>From</label>
+                    <Select 
+                        options={countries} 
+                        value={fromLocation}
+                        onChange={handleFromChange}
+                        styles={customStyles}
+                    />
+                </span>
+                <span>
+                    <label>To</label>
+                    <Select 
+                        options={countries} 
+                        value={toLocation}
+                        onChange={handleToChange}
+                        styles={customStyles}
+                    />  
+                </span>   
             </Search>     
             <TravelInfo from={fromLocation.value} to={toLocation.value}/> 
         </div>

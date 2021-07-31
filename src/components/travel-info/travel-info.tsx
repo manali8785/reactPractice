@@ -40,9 +40,9 @@ export function TravelInfo(props) {
     const res = data.canIGo;
     const info = (
       <Container>
-        <li>{res.info.quarantine}.......</li>
-        <li>{res.info.testing}........</li> 
-        <li>{res.info.documents}........</li>
+        <li>{res.info.quarantine}</li>
+        <li>{res.info.testing}</li> 
+        <li>{res.info.documents}</li>
       </Container>
     )
     return info;
