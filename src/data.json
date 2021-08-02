@@ -1,0 +1,7 @@
+{
+    "countries":[
+        { "value": "US", "label": "US" },
+        { "value": "UK", "label": "UK" },
+        { "value": "Canada", "label": "Canada" }
+    ]
+}

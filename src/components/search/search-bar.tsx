@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 import Search from './search-bar-styled';
 import { TravelInfo } from '../travel-info/travel-info';
-
+import data from '../../data.json'
 export default function SearchBar(){
 
-    const countries=[
-        { value: 'US', label: 'US' },
-        { value: 'UK', label: 'UK' },
-        { value: 'Canada', label: 'Canada' }
-    ]
-    const [fromLocation , setFromLocation ] = useState(countries[0])
-    const [toLocation , setToLocation ] = useState(countries[1])
+
+    const [fromLocation , setFromLocation ] = useState({"value": "", "label": ""})
+    const [toLocation , setToLocation ] = useState({"value": "", "label": ""})
+    const [showTravelInfo,setShowTravelInfo] = useState(false)
+
+    useEffect(() => {       
+        if(fromLocation.value !=="" && toLocation.value !=="") 
+        setShowTravelInfo(true);
+    });
 
     const customStyles = {
         container: provided => ({
           ...provided,
           width: 150
         })
-      };
+    };
 
     function handleFromChange(event){
         setFromLocation({value:event.value, label:event.label})
@@ -34,7 +36,7 @@ export default function SearchBar(){
                 <span>
                     <label>From</label>
                     <Select 
-                        options={countries} 
+                        options={data.countries} 
                         value={fromLocation}
                         onChange={handleFromChange}
                         styles={customStyles}
@@ -43,14 +45,14 @@ export default function SearchBar(){
                 <span>
                     <label>To</label>
                     <Select 
-                        options={countries} 
+                        options={data.countries} 
                         value={toLocation}
                         onChange={handleToChange}
                         styles={customStyles}
                     />  
                 </span>   
-            </Search>     
-            <TravelInfo from={fromLocation.value} to={toLocation.value}/> 
+            </Search>   
+            {showTravelInfo &&<TravelInfo from={fromLocation.value} to={toLocation.value}/>}
         </div>
     )
 }
