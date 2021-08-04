@@ -1,2 +1,2 @@
-export const bootstrapURLKeys = "AIzaSyAJ8HbyCCUhbysk9HGpDQMLxCyMzEyG7LU"
+export const bootstrapURLKeys = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkZQVTlWVFhUSEIifQ.eyJpc3MiOiJGR0pWUDk3VjZUIiwiaWF0IjoxNjAyNzgyNzgxLCJleHAiOjE2Njk3NDI3ODF9.ePPDknaekKgQKN-6-18fVgPDoHn571JCnpukNp8BMUpWT0jjxxHCix2FV6gDIs_iUPely66CgPmKSxj3ixifTA"
   

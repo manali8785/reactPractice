@@ -13,7 +13,7 @@ export default function SearchBar(){
     useEffect(() => {       
         if(fromLocation.value !=="" && toLocation.value !=="") 
         setShowTravelInfo(true);
-    });
+    },[fromLocation,toLocation]);
 
     const customStyles = {
         container: provided => ({

@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from '../search/search-bar';
-import Container from './app-styled';
+import {Container} from './app-styled';
 import Map from '../map/map';
 
 function App() {
