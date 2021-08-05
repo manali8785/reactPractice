@@ -9,8 +9,9 @@ declare global {
   }
 }
 
-export default function Map() {
+export function Map() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [appleMapObj,setAppleMapObj] = useState(null);
   const { mapkit } = window;
 
   const appendScript = () => {
@@ -22,24 +23,27 @@ export default function Map() {
   };
 
   useEffect(() => {
-     appendScript();
-     if(scriptLoaded) init();
+    if(!scriptLoaded){
+      appendScript()
+    }else{
+      if(!appleMapObj) init();
+    }
   });
 
   function init(){
+      console.log("@@@@@@@@@@@@@@@")
       mapkit.init({
         authorizationCallback: (done: Function) => {
-          console.log(bootstrapURLKeys)
           done(bootstrapURLKeys);
         },
       });
-
-      var Cupertino = new mapkit.CoordinateRegion(
-        new mapkit.Coordinate(37.3316850890998, -122.030067374026),
-        new mapkit.CoordinateSpan(0.167647972, 0.354985255)
+      var region = new mapkit.CoordinateRegion(
+        new mapkit.Coordinate(45.2733, -66.0633),
+        new mapkit.CoordinateSpan(70,50)
       );
-      var map = new mapkit.Map("appleMap");
-      map.region = Cupertino;
+      const appleMapObj = new mapkit.Map("appleMap");
+      appleMapObj.region = region;
+      setAppleMapObj(appleMapObj)
   }
 
   return (<AppleMap id="appleMap"></AppleMap>)

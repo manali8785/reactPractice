@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 import Search from './search-bar-styled';
 import { TravelInfo } from '../travel-info/travel-info';
+import { Map } from '../map/map';
+
 import data from '../../data.json'
+
 export default function SearchBar(){
-
-
     const [fromLocation , setFromLocation ] = useState({"value": "", "label": ""})
     const [toLocation , setToLocation ] = useState({"value": "", "label": ""})
     const [showTravelInfo,setShowTravelInfo] = useState(false)
@@ -53,6 +54,7 @@ export default function SearchBar(){
                 </span>   
             </Search>   
             {showTravelInfo &&<TravelInfo from={fromLocation.value} to={toLocation.value}/>}
+            <Map/>
         </div>
     )
 }
