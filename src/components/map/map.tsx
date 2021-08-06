@@ -15,6 +15,7 @@ export function Map(props) {
   const [appleMapObj,setAppleMapObj] = useState<any>(null);
   const { mapkit } = window;
   const { loading, error, travelinfo } =useCanIGo(props)
+
   
   const appendScript = () => {
     const script = document.createElement("script");
@@ -33,18 +34,7 @@ export function Map(props) {
       if(!appleMapObj){
         init();
       }else{
-        let overlays = appleMapObj.overlays;
-        appleMapObj.removeOverlays(overlays);
-
-        var coords =[new mapkit.Coordinate(travelinfo.canIGo.fromCountry.geocode.lat,travelinfo.canIGo.fromCountry.geocode.long),new mapkit.Coordinate(travelinfo.canIGo.toCountry.geocode.lat, travelinfo.canIGo.toCountry.geocode.long)] //US to Canada
-        var style = new mapkit.Style({
-            lineWidth: 3,
-            lineJoin: "round",
-            lineDash: [],
-            strokeColor: "#FF4D00"
-        });
-        var polyline = new mapkit.PolylineOverlay(coords, { style: style });
-        appleMapObj.addOverlay(polyline);
+        showRoute()
       }
     }
   });
@@ -64,5 +54,34 @@ export function Map(props) {
       setAppleMapObj(appleMapObj)
   }
 
+  function showRoute(){
+      clearRoute()
+      const from = new mapkit.Coordinate(travelinfo.canIGo.fromCountry.geocode.lat,travelinfo.canIGo.fromCountry.geocode.long);
+      const to = new mapkit.Coordinate(travelinfo.canIGo.toCountry.geocode.lat,travelinfo.canIGo.toCountry.geocode.long);
+
+      var coords =[from,to]
+      var style = new mapkit.Style({
+          lineWidth: 3,
+          lineJoin: "round",
+          lineDash: [],
+          strokeColor: "#FF4D00"
+      });
+      var polyline = new mapkit.PolylineOverlay(coords, { style: style });
+      appleMapObj.addOverlay(polyline);
+
+      const fromMarker = new mapkit.MarkerAnnotation(from, {title: 'src',color:'green'});
+      const toMarker = new mapkit.MarkerAnnotation(to, {title: 'dest',color:'red'});
+
+      appleMapObj.addAnnotation(fromMarker);
+      appleMapObj.addAnnotation(toMarker);
+  }
+
+  function clearRoute(){
+      let overlays = appleMapObj.overlays;
+      appleMapObj.removeOverlays(overlays);
+
+      let annotations = appleMapObj.annotations;
+      appleMapObj.removeAnnotations(annotations);
+  }
   return (<AppleMap id="appleMap"></AppleMap>)
 }

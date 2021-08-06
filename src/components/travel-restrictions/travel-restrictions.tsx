@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
-import Search from './search-bar-styled';
+import Search from './travel-restrictions-styled';
 import { TravelInfo } from '../travel-info/travel-info';
 import { Map } from '../map/map';
 import data from '../../data.json'

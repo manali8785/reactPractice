@@ -1,11 +1,11 @@
 import React from 'react';
-import SearchBar from '../search/search-bar';
+import TravelRestrictions from '../travel-restrictions/travel-restrictions';
 import {Container} from './app-styled';
 
 function App() {
   return (
     <Container>
-      <SearchBar/>
+      <TravelRestrictions/>
     </Container>
   )
 }
