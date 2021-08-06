@@ -3,7 +3,6 @@ import Select from 'react-select'
 import Search from './search-bar-styled';
 import { TravelInfo } from '../travel-info/travel-info';
 import { Map } from '../map/map';
-
 import data from '../../data.json'
 
 export default function SearchBar(){
@@ -12,8 +11,9 @@ export default function SearchBar(){
     const [showTravelInfo,setShowTravelInfo] = useState(false)
 
     useEffect(() => {       
-        if(fromLocation.value !=="" && toLocation.value !=="") 
-        setShowTravelInfo(true);
+        if(fromLocation.value !=="" && toLocation.value !=="") {
+            setShowTravelInfo(true);            
+        }
     },[fromLocation,toLocation]);
 
     const customStyles = {
@@ -54,7 +54,7 @@ export default function SearchBar(){
                 </span>   
             </Search>   
             {showTravelInfo &&<TravelInfo from={fromLocation.value} to={toLocation.value}/>}
-            <Map/>
+            {showTravelInfo &&<Map from={fromLocation.value} to={toLocation.value}/>}
         </div>
     )
 }
