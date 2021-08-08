@@ -1,10 +1,23 @@
 import styled from 'styled-components'
+import { screenSize } from '../../screen-size'
 
-const Search = styled.div`
+export const Container = styled.div`
+    display:flex;
+    flex-direction:column;
+    width:800px;
+    margin: 0 auto;
+    
+    @media (${screenSize.maxMobile}) {
+        width: 70%;
+    }
+    @media (${screenSize.maxLaptop}) {
+        width: 80%;
+    }
+`
+export const Search = styled.div`
     display:flex;
     justify-content: space-evenly;
-    width: 800px;
     padding: 20px 0px;
 `
-export default Search;
+
 

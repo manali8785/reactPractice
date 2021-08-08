@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
-import Search from './travel-restrictions-styled';
+import { Search, Container } from './travel-restrictions-styled';
 import { TravelInfo } from '../travel-info/travel-info';
 import { Map } from '../map/map';
 import data from '../../data.json'
@@ -32,7 +32,7 @@ export default function SearchBar(){
     }
 
     return(
-        <div>
+        <Container>
             <Search>
                 <span>
                     <label>From</label>
@@ -55,7 +55,7 @@ export default function SearchBar(){
             </Search>   
             {showTravelInfo &&<TravelInfo from={fromLocation.value} to={toLocation.value}/>}
             {showTravelInfo &&<Map from={fromLocation.value} to={toLocation.value}/>}
-        </div>
+        </Container>
     )
 }
 

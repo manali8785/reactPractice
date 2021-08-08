@@ -14,7 +14,7 @@ export function Map(props) {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [appleMapObj,setAppleMapObj] = useState<any>(null);
   const { mapkit } = window;
-  const { loading, error, travelinfo } =useCanIGo(props)
+  const { loading, error, travelinfo } = useCanIGo(props)
 
   
   const appendScript = () => {
