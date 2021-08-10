@@ -6,12 +6,14 @@ import { Map } from '../map/map';
 import data from '../../data.json'
 
 export default function TravelRestrictions(){
+    
+    const countries = data.countries
     const [fromLocation , setFromLocation ] = useState({"value": "", "label": ""})
     const [toLocation , setToLocation ] = useState({"value": "", "label": ""})
     const [showTravelInfo,setShowTravelInfo] = useState(false)
-    const countries = data.countries
-    const [fromCountries,setFromCountries] = useState(data.countries)
-    const [toCountries,setToCountries] = useState(data.countries)
+    const [fromCountries,setFromCountries] = useState(countries)
+    const [toCountries,setToCountries] = useState(countries)
+
 
     useEffect(() => {       
         if(fromLocation.value !=="" && toLocation.value !=="") {
