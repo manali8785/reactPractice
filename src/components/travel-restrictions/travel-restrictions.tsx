@@ -5,14 +5,17 @@ import { TravelInfo } from '../travel-info/travel-info';
 import { Map } from '../map/map';
 import data from '../../data.json'
 
-export default function SearchBar(){
+export default function TravelRestrictions(){
     const [fromLocation , setFromLocation ] = useState({"value": "", "label": ""})
     const [toLocation , setToLocation ] = useState({"value": "", "label": ""})
     const [showTravelInfo,setShowTravelInfo] = useState(false)
+    const countries = data.countries
+    const [fromCountries,setFromCountries] = useState(data.countries)
+    const [toCountries,setToCountries] = useState(data.countries)
 
     useEffect(() => {       
         if(fromLocation.value !=="" && toLocation.value !=="") {
-            setShowTravelInfo(true);            
+            setShowTravelInfo(true);   
         }
     },[fromLocation,toLocation]);
 
@@ -24,11 +27,15 @@ export default function SearchBar(){
     };
 
     function handleFromChange(event){
-        setFromLocation({value:event.value, label:event.label})
+        setFromLocation({ value:event.value, label:event.label })
+        var filteredCountries = countries.filter(country => country.label !== event.label);
+        setToCountries(filteredCountries)
     }
     
     function handleToChange(event){
-        setToLocation({value:event.value, label:event.label})
+        setToLocation({ value:event.value, label:event.label })
+        var filteredCountries = countries.filter(country => country.label !== event.label);
+        setFromCountries(filteredCountries);
     }
 
     return(
@@ -37,7 +44,7 @@ export default function SearchBar(){
                 <span>
                     <label>From</label>
                     <Select 
-                        options={data.countries} 
+                        options={fromCountries} 
                         value={fromLocation}
                         onChange={handleFromChange}
                         styles={customStyles}
@@ -46,7 +53,7 @@ export default function SearchBar(){
                 <span>
                     <label>To</label>
                     <Select 
-                        options={data.countries} 
+                        options={toCountries} 
                         value={toLocation}
                         onChange={handleToChange}
                         styles={customStyles}
