@@ -2,6 +2,7 @@
     "countries":[
         { "value": "US", "label": "US" },
         { "value": "UK", "label": "UK" },
-        { "value": "Canada", "label": "Canada" }
+        { "value": "Canada", "label": "Canada" },
+        { "value": "India", "label": "India" }
     ]
 }

@@ -6,14 +6,12 @@ import { Map } from '../map/map';
 import data from '../../data.json'
 
 export default function TravelRestrictions(){
-    
     const countries = data.countries
     const [fromLocation , setFromLocation ] = useState({"value": "", "label": ""})
     const [toLocation , setToLocation ] = useState({"value": "", "label": ""})
     const [showTravelInfo,setShowTravelInfo] = useState(false)
     const [fromCountries,setFromCountries] = useState(countries)
     const [toCountries,setToCountries] = useState(countries)
-
 
     useEffect(() => {       
         if(fromLocation.value !=="" && toLocation.value !=="") {
@@ -62,8 +60,8 @@ export default function TravelRestrictions(){
                     />  
                 </span>   
             </Search>   
-            {showTravelInfo &&<TravelInfo from={fromLocation.value} to={toLocation.value}/>}
-            {showTravelInfo &&<Map from={fromLocation.value} to={toLocation.value}/>}
+            {showTravelInfo && <TravelInfo from={fromLocation.value} to={toLocation.value}/>}
+            {showTravelInfo && <Map from={fromLocation.value} to={toLocation.value}/>}
         </Container>
     )
 }

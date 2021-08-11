@@ -22,5 +22,11 @@ export const InfoCol = styled(Col)`
   border-radius: 2px;
   padding: 15px 15px;
   background: #f5f5f5;
+`;
 
+export const Error = styled.div`
+  font-size: 1rem;
+  font-weight:600;
+  color: red;
+  margin: 0 auto;
 `;

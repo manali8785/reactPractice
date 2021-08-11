@@ -12,10 +12,12 @@ declare global {
 
 export function Map(props) {
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [appleMapObj,setAppleMapObj] = useState<any>(null);
+  const [appleMapObj, setAppleMapObj] = useState<any>(null);
   const { mapkit } = window;
-  const { loading, error, travelinfo } = useCanIGo(props)
+  const { loading, error, travelinfo } = useCanIGo(props);
+  var showMap = true;
 
+  if(error) showMap=false;
   
   const appendScript = () => {
     const script = document.createElement("script");
@@ -26,8 +28,9 @@ export function Map(props) {
   };
 
   useEffect(() => {
-    if(!travelinfo) return;
 
+    if(!travelinfo) return;
+    
     if(!scriptLoaded){
       appendScript()
     }else{
@@ -56,8 +59,10 @@ export function Map(props) {
 
   function showRoute(){
       clearRoute()
-      const from = new mapkit.Coordinate(travelinfo.canIGo.fromCountry.geocode.lat,travelinfo.canIGo.fromCountry.geocode.long);
-      const to = new mapkit.Coordinate(travelinfo.canIGo.toCountry.geocode.lat,travelinfo.canIGo.toCountry.geocode.long);
+      const fromCountry = travelinfo.canIGo.fromCountry.geocode;
+      const toCountry = travelinfo.canIGo.toCountry.geocode;
+      const from = new mapkit.Coordinate(fromCountry.lat, fromCountry.long);
+      const to = new mapkit.Coordinate(toCountry.lat, toCountry.long);
 
       var coords =[from,to]
       var style = new mapkit.Style({
@@ -83,5 +88,8 @@ export function Map(props) {
       let annotations = appleMapObj.annotations;
       appleMapObj.removeAnnotations(annotations);
   }
-  return (<AppleMap id="appleMap"></AppleMap>)
+  
+  return (
+    <AppleMap id="appleMap" isVisible={showMap}></AppleMap>
+  )
 }
