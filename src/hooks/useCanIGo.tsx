@@ -31,7 +31,8 @@ import {
 
 export function useCanIGo(props){
   const { loading, error, data:travelinfo } = useQuery(Can_I_Go,{
-    variables:{from:props.from,to:props.to}
+    variables:{from:props.from,to:props.to},
+    fetchPolicy:"no-cache"
   });
   return {loading, error, travelinfo};
 }

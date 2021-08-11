@@ -10,18 +10,21 @@ export function TravelInfo(props) {
     
     if(!travelinfo) return null;
 
-    const info = travelinfo.canIGo.info;
-    
+    var info = travelinfo.canIGo.info;
+
     return(
       <StyledContainer>
         <InfoRow>
           {
-            Object.keys(info).slice(1).map((key, i) => (
-              <InfoCol key={i} md={{ span: 4 }}>
-                <Header>{key}</Header>
-                <div>{info[key]}</div>
-              </InfoCol>
-            ))
+            Object.keys(info).map((key, i) => {
+              if(key === "__typename") return null;  
+              return(
+                <InfoCol key={i} md={{ span: 4 }}>
+                  <Header>{key}</Header>
+                  <div>{info[key]}</div>
+                </InfoCol>
+              )
+            })
           }
         </InfoRow>
       </StyledContainer> 
